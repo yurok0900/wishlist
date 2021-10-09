@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 
 {% block body %}
+
     <h2> Желаемые подарки</h2>
     {% if is_owner_list %}
-        <input type="text" placeholder="Добавить товар"></br>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <button type="submit">Add</button>
+        </form>
     {% endif %}
         {% for product in wishlist.product.all %}
         <a href="{{ product.link }}">{{ product.title }}</a><br>    
